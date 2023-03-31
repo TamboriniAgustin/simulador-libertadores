@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Configuración -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simulación Libertadores</title>
+        <!-- Css -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/main.css">
+        <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <script src="js/main.js"></script>
+    </head>
+
+    <body>
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="Logo">
+                </a>
+            </div>
+
+            <div class="equipos">
+                <div class="fila">
+                    <div class="equipo" data-equipo="BOC"></div>
+                    <div class="equipo" data-equipo="RIV"></div>
+                    <div class="equipo" data-equipo="OLI"></div>
+                    <div class="equipo" data-equipo="PAL"></div>
+                    <div class="equipo" data-equipo="NAC"></div>
+                    <div class="equipo" data-equipo="FLA"></div>
+                    <div class="equipo" data-equipo="INT"></div>
+                    <div class="equipo" data-equipo="ATN"></div>
+                    <div class="equipo" data-equipo="COL"></div>
+                    <div class="equipo" data-equipo="ARG"></div>
+                    <div class="equipo" data-equipo="RAC"></div>
+                    <div class="equipo" data-equipo="CAM"></div>
+                    <div class="equipo" data-equipo="COR"></div>
+                    <div class="equipo" data-equipo="CAP"></div>
+                    <div class="equipo" data-equipo="BSC"></div>
+                    <div class="equipo" data-equipo="FLU"></div>
+                </div>
+
+                <div class="fila">
+                    <div class="equipo" data-equipo="IDV"></div>
+                    <div class="equipo" data-equipo="SCL"></div>
+                    <div class="equipo" data-equipo="LIB"></div>
+                    <div class="equipo" data-equipo="ALI"></div>
+                    <div class="equipo" data-equipo="AUC"></div>
+                    <div class="equipo" data-equipo="BOL"></div>
+                    <div class="equipo" data-equipo="MEL"></div>
+                    <div class="equipo" data-equipo="MET"></div>
+                    <div class="equipo" data-equipo="MON"></div>
+                    <div class="equipo" data-equipo="STR"></div>
+                    <div class="equipo" data-equipo="CCP"></div>
+                    <div class="equipo" data-equipo="DIM"></div>
+                    <div class="equipo" data-equipo="DPP"></div>
+                    <div class="equipo" data-equipo="LIV"></div>
+                    <div class="equipo" data-equipo="NUB"></div>
+                    <div class="equipo" data-equipo="PAT"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Selector functionalidades -->
+        <section id="selector-funcionalidades">
+            <h1>Simulaciones</h1>
+            <div class="cards">
+                <div class="card sorteo-grupos">
+                    <button>Sorteo Fase de Grupos</button>
+                </div>
+        
+                <div class="card grupos">
+                    <button>Fase de Grupos</button>
+                </div>
+
+                <div class="card sorteo-eliminatorias">
+                    <button>Sorteo Eliminatorias</button>
+                </div>
+
+                <div class="card eliminatorias">
+                    <button>Eliminatorias</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Funcionalidades -->
+        <section id="funcionalidades">
+            <h1 class="titulo"></h1>
+            <div class="contenedor-funcionalidades">
+                <div id="sorteo-fase-grupos">
+                    <div class="bombos">
+                        <div class="bombo bombo1">
+                            <h1>Bombo 1</h1>
+                        </div>
+                        <div class="bombo bombo2">
+                            <h1>Bombo 2</h1>
+                        </div>
+                        <div class="bombo bombo3">
+                            <h1>Bombo 3</h1>
+                        </div>
+                        <div class="bombo bombo4">
+                            <h1>Bombo 4</h1>
+                        </div>
+                    </div>
+
+                    <div class="contenedor-btn-sortear">
+                        <button id="sortear">Sortear</button>
+                    </div>
+
+                    <div class="sorteo">
+                        <div class="fila">
+                            <div class="grupo grupo0">
+                                <h1>Grupo A</h1>
+                            </div>
+                            <div class="grupo grupo1">
+                                <h1>Grupo B</h1>
+                            </div>
+                            <div class="grupo grupo2">
+                                <h1>Grupo C</h1>
+                            </div>
+                            <div class="grupo grupo3">
+                                <h1>Grupo D</h1>
+                            </div>
+                        </div>
+                        <div class="fila">
+                            <div class="grupo grupo4">
+                                <h1>Grupo E</h1>
+                            </div>
+                            <div class="grupo grupo5">
+                                <h1>Grupo F</h1>
+                            </div>
+                            <div class="grupo grupo6">
+                                <h1>Grupo G</h1>
+                            </div>
+                            <div class="grupo grupo7">
+                                <h1>Grupo H</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="fase-grupos">
+                    <div class="filtro-grupos">
+                        <button id="grupoA" class="active">Grupo A</button>
+                        <button id="grupoB">Grupo B</button>
+                        <button id="grupoC">Grupo C</button>
+                        <button id="grupoD">Grupo D</button>
+                        <button id="grupoE">Grupo E</button>
+                        <button id="grupoF">Grupo F</button>
+                        <button id="grupoG">Grupo G</button>
+                        <button id="grupoH">Grupo H</button>
+                    </div>
+                    
+                    <div class="grupos">
+                        <div class="grupo grupo1">
+                            <div class="titulo">
+                                <hr>
+                                <h1>GRUPO <span>A</span></h1>
+                            </div>
+                            <div class="equipos"></div>
+                        </div>
+
+                        <div class="grupo grupo2">
+                            <div class="titulo">
+                                <hr>
+                                <h1>GRUPO <span>B</span></h1>
+                            </div>
+                            <div class="equipos"></div>
+                        </div>
+
+                        <div class="grupo grupo3">
+                            <div class="titulo">
+                                <hr>
+                                <h1>GRUPO <span>C</span></h1>
+                            </div>
+                            <div class="equipos"></div>
+                        </div>
+
+                        <div class="grupo grupo4">
+                            <div class="titulo">
+                                <hr>
+                                <h1>GRUPO <span>D</span></h1>
+                            </div>
+                            <div class="equipos"></div>
+                        </div>
+
+                        <div class="grupo grupo5">
+                            <div class="titulo">
+                                <hr>
+                                <h1>GRUPO <span>E</span></h1>
+                            </div>
+                            <div class="equipos"></div>
+                        </div>
+
+                        <div class="grupo grupo6">
+                            <div class="titulo">
+                                <hr>
+                                <h1>GRUPO <span>F</span></h1>
+                            </div>
+                            <div class="equipos"></div>
+                        </div>
+
+                        <div class="grupo grupo7">
+                            <div class="titulo">
+                                <hr>
+                                <h1>GRUPO <span>G</span></h1>
+                            </div>
+                            <div class="equipos"></div>
+                        </div>
+
+                        <div class="grupo grupo8">
+                            <div class="titulo">
+                                <hr>
+                                <h1>GRUPO <span>H</span></h1>
+                            </div>
+                            <div class="equipos"></div>
+                        </div>
+                    </div>
+
+                    <div class="fixture">
+                        <div class="grupo grupo1"></div>
+                        <div class="grupo grupo2"></div>
+                        <div class="grupo grupo3"></div>
+                        <div class="grupo grupo4"></div>
+                        <div class="grupo grupo5"></div>
+                        <div class="grupo grupo6"></div>
+                        <div class="grupo grupo7"></div>
+                        <div class="grupo grupo8"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
