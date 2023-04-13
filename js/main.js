@@ -1,4 +1,5 @@
 const delay = ms => new Promise(res => setTimeout(res, ms));
+const allEqual = arr => arr.every(val => JSON.stringify(val) == JSON.stringify(arr[0]));
 
 const equipos = {
     "AlianzaLima": { nombre: "Alianza Lima", abreviacion: "ALI", pais: "PER" },
@@ -111,17 +112,17 @@ const fixtureGrupos = [
         { local: equipos["Flamengo"], visitante: equipos["Ñublense"] },
         { local: equipos["Racing"], visitante: equipos["Aucas"] },
 
-        { local: equipos["Ñublense"], visitante: equipos["Aucas"] },
-        { local: equipos["Racing"], visitante: equipos["Flamengo"] },
+        // { local: equipos["Ñublense"], visitante: equipos["Aucas"] },
+        // { local: equipos["Racing"], visitante: equipos["Flamengo"] },
 
-        { local: equipos["Aucas"], visitante: equipos["Racing"] },
-        { local: equipos["Ñublense"], visitante: equipos["Flamengo"] },
+        // { local: equipos["Aucas"], visitante: equipos["Racing"] },
+        // { local: equipos["Ñublense"], visitante: equipos["Flamengo"] },
 
-        { local: equipos["Aucas"], visitante: equipos["Ñublense"] },
-        { local: equipos["Flamengo"], visitante: equipos["Racing"] },
+        // { local: equipos["Aucas"], visitante: equipos["Ñublense"] },
+        // { local: equipos["Flamengo"], visitante: equipos["Racing"] },
 
-        { local: equipos["Flamengo"], visitante: equipos["Aucas"] },
-        { local: equipos["Racing"], visitante: equipos["Ñublense"] }
+        // { local: equipos["Flamengo"], visitante: equipos["Aucas"] },
+        // { local: equipos["Racing"], visitante: equipos["Ñublense"] }
     ],
     B = [
         { local: equipos["DIM"], visitante: equipos["Internacional"] },
@@ -130,31 +131,140 @@ const fixtureGrupos = [
         { local: equipos["Internacional"], visitante: equipos["Metropolitanos"] },
         { local: equipos["Nacional"], visitante: equipos["DIM"] },
 
-        { local: equipos["Internacional"], visitante: equipos["Nacional"] },
-        { local: equipos["DIM"], visitante: equipos["Metropolitanos"] },
+        // { local: equipos["Internacional"], visitante: equipos["Nacional"] },
+        // { local: equipos["DIM"], visitante: equipos["Metropolitanos"] },
 
-        { local: equipos["DIM"], visitante: equipos["Nacional"] },
-        { local: equipos["Metropolitanos"], visitante: equipos["Internacional"] },
+        // { local: equipos["DIM"], visitante: equipos["Nacional"] },
+        // { local: equipos["Metropolitanos"], visitante: equipos["Internacional"] },
 
-        { local: equipos["Nacional"], visitante: equipos["Internacional"] },
-        { local: equipos["Metropolitanos"], visitante: equipos["DIM"] },
+        // { local: equipos["Nacional"], visitante: equipos["Internacional"] },
+        // { local: equipos["Metropolitanos"], visitante: equipos["DIM"] },
 
-        { local: equipos["Nacional"], visitante: equipos["Metropolitanos"] },
-        { local: equipos["Internacional"], visitante: equipos["DIM"] }
+        // { local: equipos["Nacional"], visitante: equipos["Metropolitanos"] },
+        // { local: equipos["Internacional"], visitante: equipos["DIM"] }
+    ],
+    C = [
+        { local: equipos["CCP"], visitante: equipos["Barcelona"] },
+        { local: equipos["Bolivar"], visitante: equipos["Palmeiras"] },
+
+        { local: equipos["Barcelona"], visitante: equipos["Bolivar"] },
+        { local: equipos["Palmeiras"], visitante: equipos["CCP"] },
+
+        // { local: equipos["CCP"], visitante: equipos["Bolivar"] },
+        // { local: equipos["Barcelona"], visitante: equipos["Palmeiras"] },
+
+        // { local: equipos["Bolivar"], visitante: equipos["Barcelona"] },
+        // { local: equipos["CCP"], visitante: equipos["Palmeiras"] },
+
+        // { local: equipos["Bolivar"], visitante: equipos["CCP"] },
+        // { local: equipos["Palmeiras"], visitante: equipos["Barcelona"] },
+
+        // { local: equipos["Palmeiras"], visitante: equipos["Bolivar"] },
+        // { local: equipos["Barcelona"], visitante: equipos["CCP"] }
+    ],
+    D = [
+        { local: equipos["Strongest"], visitante: equipos["River"] },
+        { local: equipos["SCP"], visitante: equipos["Fluminense"] },
+
+        { local: equipos["Fluminense"], visitante: equipos["Strongest"] },
+        { local: equipos["River"], visitante: equipos["SCP"] },
+
+        // { local: equipos["Fluminense"], visitante: equipos["River"] },
+        // { local: equipos["SCP"], visitante: equipos["Strongest"] },
+
+        // { local: equipos["Strongest"], visitante: equipos["Fluminense"] },
+        // { local: equipos["SCP"], visitante: equipos["River"] },
+
+        // { local: equipos["River"], visitante: equipos["Fluminense"] },
+        // { local: equipos["Strongest"], visitante: equipos["SCP"] },
+
+        // { local: equipos["Fluminense"], visitante: equipos["SCP"] },
+        // { local: equipos["River"], visitante: equipos["Strongest"] }
+    ],
+    E = [
+        { local: equipos["Argentinos"], visitante: equipos["IDV"] },
+        { local: equipos["Liverpool"], visitante: equipos["Corinthians"] },
+
+        { local: equipos["IDV"], visitante: equipos["Liverpool"] },
+        { local: equipos["Corinthians"], visitante: equipos["Argentinos"] },
+
+        // { local: equipos["Liverpool"], visitante: equipos["Argentinos"] },
+        // { local: equipos["Corinthians"], visitante: equipos["IDV"] },
+
+        // { local: equipos["Liverpool"], visitante: equipos["IDV"] },
+        // { local: equipos["Argentinos"], visitante: equipos["Corinthians"] },
+
+        // { local: equipos["Argentinos"], visitante: equipos["Liverpool"] },
+        // { local: equipos["IDV"], visitante: equipos["Corinthians"] },
+
+        // { local: equipos["IDV"], visitante: equipos["Argentinos"] },
+        // { local: equipos["Corinthians"], visitante: equipos["Liverpool"] }
+    ],
+    F = [
+        { local: equipos["DPP"], visitante: equipos["ColoColo"] },
+        { local: equipos["Monagas"], visitante: equipos["Boca"] },
+
+        { local: equipos["Boca"], visitante: equipos["DPP"] },
+        { local: equipos["ColoColo"], visitante: equipos["Monagas"] },
+
+        // { local: equipos["ColoColo"], visitante: equipos["Boca"] },
+        // { local: equipos["DPP"], visitante: equipos["Monagas"] },
+
+        // { local: equipos["Monagas"], visitante: equipos["ColoColo"] },
+        // { local: equipos["DPP"], visitante: equipos["Boca"] },
+
+        // { local: equipos["Monagas"], visitante: equipos["DPP"] },
+        // { local: equipos["Boca"], visitante: equipos["ColoColo"] },
+
+        // { local: equipos["Boca"], visitante: equipos["Monagas"] },
+        // { local: equipos["ColoColo"], visitante: equipos["DPP"] }
+    ],
+    G = [
+        { local: equipos["AlianzaLima"], visitante: equipos["Paranaense"] },
+        { local: equipos["Mineiro"], visitante: equipos["Libertad"] },
+
+        { local: equipos["Paranaense"], visitante: equipos["Mineiro"] },
+        { local: equipos["Libertad"], visitante: equipos["AlianzaLima"] },
+
+        // { local: equipos["Mineiro"], visitante: equipos["AlianzaLima"] },
+        // { local: equipos["Libertad"], visitante: equipos["Paranaense"] },
+
+        // { local: equipos["Mineiro"], visitante: equipos["Paranaense"] },
+        // { local: equipos["AlianzaLima"], visitante: equipos["Libertad"] },
+
+        // { local: equipos["Paranaense"], visitante: equipos["Libertad"] },
+        // { local: equipos["AlianzaLima"], visitante: equipos["Mineiro"] },
+
+        // { local: equipos["Paranaense"], visitante: equipos["AlianzaLima"] },
+        // { local: equipos["Libertad"], visitante: equipos["Mineiro"] }
+    ],
+    H = [
+        { local: equipos["Patronato"], visitante: equipos["ATN"] },
+        { local: equipos["Melgar"], visitante: equipos["Olimpia"] },
+
+        { local: equipos["Olimpia"], visitante: equipos["Patronato"] },
+        { local: equipos["ATN"], visitante: equipos["Melgar"] },
+
+        // { local: equipos["ATN"], visitante: equipos["Olimpia"] },
+        // { local: equipos["Patronato"], visitante: equipos["Melgar"] },
+
+        // { local: equipos["Patronato"], visitante: equipos["Olimpia"] },
+        // { local: equipos["Melgar"], visitante: equipos["ATN"] },
+
+        // { local: equipos["Melgar"], visitante: equipos["Patronato"] },
+        // { local: equipos["Olimpia"], visitante: equipos["ATN"] },
+
+        // { local: equipos["ATN"], visitante: equipos["Patronato"] },
+        // { local: equipos["Olimpia"], visitante: equipos["Melgar"] }
     ]
 ]
 
 $(document).ready(function () {
     //Carga header
-    const equipos = $("header .equipos .equipo");
-    $.each(equipos, function(index, equipo) {
-        const imagen = $(equipo).attr("data-equipo") + ".png";
-        $(equipo).css("background-image", `url('img/equipos/${imagen}')`);
-    });
-
     //Carga funcionalidad: sorteo fase de grupos
     $.each(bombosGrupos, function(bombo, equipos) {
         $.each(equipos, function(index, equipo) {
+            agregarEquipoHeader(+(bombo > 1), equipo.abreviacion);
             agregarEquipoBombo(bombo+1, equipo.nombre, equipo.abreviacion, equipo.campeon, equipo.fasePrevia, equipo.pais);
         });
     });
@@ -180,7 +290,6 @@ $(document).ready(function () {
     });
 
     $("#sorteo-fase-grupos #sortear").on("click", function () {
-        $(this).parent().remove();
         sortearFaseDeGrupos();
     });
 
@@ -191,7 +300,84 @@ $(document).ready(function () {
         $("section#funcionalidades").show();
         $("section#funcionalidades #fase-grupos").show();
     });
+
+    $("#fase-grupos .fixture .grupo .partido .resultado input").on("change", function () {
+        //Obtenemos el resultado ingresado
+        var resultadoLocal = "";
+        var resultadoVisitante = "";
+
+        //Buscamos el resultado del rival
+        if($(this).hasClass("local")) {
+            resultadoLocal = $(this).val();
+            resultadoVisitante = $(this).parent().find("input.visitante").val();
+        } else {
+            resultadoVisitante = $(this).val();
+            resultadoLocal = $(this).parent().find("input.local").val();
+        }
+        
+        //Comparamos los resultados y marcamos el resultado en los equipos
+        if(resultadoLocal != "" && resultadoVisitante != "") {
+            const local = $(this).parent().parent().find(".equipo[data-parcialidad='local']");
+            const visitante = $(this).parent().parent().find(".equipo[data-parcialidad='visitante']");
+            
+            if(resultadoLocal > resultadoVisitante) {
+                $(local).attr("data-resultado", "G");
+                $(local).attr("data-difGol", resultadoLocal-resultadoVisitante);
+                $(visitante).attr("data-resultado", "P");
+                $(visitante).attr("data-difGol", resultadoVisitante-resultadoLocal);   
+            } else if(resultadoLocal == resultadoVisitante) {
+                $(local).attr("data-resultado", "E");
+                $(local).attr("data-difGol", 0);
+                $(visitante).attr("data-resultado", "E");
+                $(visitante).attr("data-difGol", 0);
+            } else {
+                $(local).attr("data-resultado", "P");
+                $(local).attr("data-difGol", resultadoLocal-resultadoVisitante);
+                $(visitante).attr("data-resultado", "G");
+                $(visitante).attr("data-difGol", resultadoVisitante-resultadoLocal);
+            }
+        }
+    });
+
+    $("#fase-grupos #simularGrupos").on("click", function() {
+        const grupo = $(this).attr("data-grupo");
+        const equiposGrupo = $("#fase-grupos .grupos .grupo" + grupo + " .equipos .equipo");
+        
+        $.each(equiposGrupo, function(index, equipo) {
+            obtenerPuntosGrupos(grupo, equipo);
+        });
+        ordenarGrupo(grupo);
+        
+        $("#fase-grupos .fixture .grupo" + grupo).hide();
+        setTimeout(() => {
+            $("#fase-grupos .grupos .grupo" + grupo).hide();
+            $("#fase-grupos .filtro-grupos #grupo" + grupo).removeClass("active");
+            
+            $("#fase-grupos .filtro-grupos #grupo" + (parseInt(grupo)+1)).addClass("active");
+            $("#fase-grupos .grupos .grupo" + (parseInt(grupo)+1)).show();
+            $("#fase-grupos .fixture .grupo" + (parseInt(grupo)+1)).css("display", "flex");
+
+            if(grupo < 8) {
+                $(this).attr("data-grupo", parseInt(grupo)+1);
+            } else {
+                $("#fase-grupos #simularGrupos").hide();
+
+                $("#fase-grupos .grupos .grupo .equipos .equipo:nth-last-child(-n+2)").remove();
+                $("#fase-grupos .grupos .grupo").show();
+                $("#fase-grupos .grupos").addClass("vista-final");
+            }
+        }, 2000);
+    });
 });
+
+//Creación de header
+function agregarEquipoHeader(fila, abreviacionEquipo) {
+    const divEquipo = $("<div>");
+    $(divEquipo).addClass("equipo");
+    $(divEquipo).css("background-image", `url('img/equipos/${abreviacionEquipo}.png')`);
+
+    $(`header .equipos .fila${fila}`).append(divEquipo);
+}
 
 //Creación de bombos
 function agregarEquipoBombo(bombo, equipo, abreviacion, esCampeon, vieneDeFasePrevia, pais) {
@@ -228,7 +414,7 @@ function agregarEquipoGrupo(grupo, equipo, abreviacion) {
     $(puntos).html("Puntos: <span>0<span>");
     const diferenciaGol = $("<p>");
     $(diferenciaGol).addClass("difGol");
-    $(diferenciaGol).html("Dif. de gol: <span class='signo'>+</span> <span class='goles'>0</span>");
+    $(diferenciaGol).html("Dif. de gol: <span class='goles'>0</span>");
     const divEstadisticas = $("<div>");
     $(divEstadisticas).addClass("estadisticas");
     $(divEstadisticas).append(puntos);
@@ -237,6 +423,7 @@ function agregarEquipoGrupo(grupo, equipo, abreviacion) {
 
     const divEquipo = $("<div>");
     $(divEquipo).addClass("equipo");
+    $(divEquipo).attr("data-equipo", abreviacion);
     $(divEquipo).append(divDatos);
     $(divEquipo).append(divEstadisticas);
 
@@ -250,16 +437,18 @@ function agregarPartidoGrupo(grupo, local, visitante) {
     $(tituloLocal).text(local.nombre);
     const divLocal = $("<div>");
     $(divLocal).addClass("equipo");
+    $(divLocal).attr("data-parcialidad", "local");
+    $(divLocal).attr("data-equipo", local.abreviacion);
     $(divLocal).append(imagenLocal);
     $(divLocal).append(tituloLocal);
 
     const resultadoLocal = $("<input>");
-    $(resultadoLocal).attr("type", "text");
+    $(resultadoLocal).attr("type", "number");
     $(resultadoLocal).addClass("local");
     const separadorResultado = $("<span>");
     $(separadorResultado).text("-");
     const resultadoVisitante = $("<input>");
-    $(resultadoVisitante).attr("type", "text");
+    $(resultadoVisitante).attr("type", "number");
     $(resultadoVisitante).addClass("visitante");
     const divResultado = $("<div>");
     $(divResultado).addClass("resultado");
@@ -273,6 +462,8 @@ function agregarPartidoGrupo(grupo, local, visitante) {
     $(tituloVisitante).text(visitante.nombre);
     const divVisitante = $("<div>");
     $(divVisitante).addClass("equipo");
+    $(divVisitante).attr("data-parcialidad", "visitante");
+    $(divVisitante).attr("data-equipo", visitante.abreviacion);
     $(divVisitante).append(imagenVisitante);
     $(divVisitante).append(tituloVisitante);
 
@@ -286,88 +477,239 @@ function agregarPartidoGrupo(grupo, local, visitante) {
 }
 
 //Sorteos
-function sortearFaseDeGrupos() {
-    //Acomodamos al campeón como cabeza de serie del grupo A
-    const campeon = $("#sorteo-fase-grupos .bombos .bombo1 .equipo[data-campeon=true]");
-    asignarGrupo(campeon, $("#sorteo-fase-grupos .sorteo .grupo0"));
-    
-    //Sorteamos los equipos del bombo 1
-    setTimeout(() => {    
-        const equiposBombo1 = $("#sorteo-fase-grupos .bombos .bombo1 .equipo");
-        for (let i=1; i<8; i++) {
-            sortearBombo("1", i, equiposBombo1, 7);
-        }
-    }, 1000);
-    
-    //Sorteamos los equipos del bombo 2
-    setTimeout(() => {    
-        const equiposBombo2 = $("#sorteo-fase-grupos .bombos .bombo2 .equipo");
-        for (let i=0; i<8; i++) {
-            sortearBombo("2", i, equiposBombo2, 8);
-        }
-    }, 9000);
+function sortearFaseDeGrupos() {    
+    const sorteo = {
+        grupo0: new Array(),
+        grupo1: new Array(),
+        grupo2: new Array(),
+        grupo3: new Array(),
+        grupo4: new Array(),
+        grupo5: new Array(),
+        grupo6: new Array(),
+        grupo7: new Array()
+    };
 
-    //Sorteamos los equipos del bombo 3
-    setTimeout(() => {    
-        const equiposBombo3 = $("#sorteo-fase-grupos .bombos .bombo3 .equipo");
-        for (let i=0; i<8; i++) {
-            sortearBombo("3", i, equiposBombo3, 8);
-        }
-    }, 17000);
+    sortearBombos(sorteo, 0);
+    sortearBombos(sorteo, 1);
+    sortearBombos(sorteo, 2);
+    sortearBombos(sorteo, 3);
 
-    //Sorteamos los equipos del bombo 4
-    setTimeout(() => {    
-        const equiposBombo4 = $("#sorteo-fase-grupos .bombos .bombo4 .equipo");
-        for (let i=0; i<8; i++) {
-            sortearBombo("4", i, equiposBombo4, 8);
-        }
-    }, 25000);
+    acomodarEquipos(sorteo);
 }
 
-function sortearBombo(bombo, grupo, equipos, equiposSorteados) {
-    setTimeout(() => {
-        var intentos = 0;
-        var equipo = equipos[generateRandom(equiposSorteados)];    
-        while($(equipo).attr("data-sorteado") != undefined || !puedeIngresarEnGrupo(bombo, grupo, equipo)) {
-            if(intentos > 100) {
-                break;
-            }
-            equipo = equipos[generateRandom(equiposSorteados)];
-            intentos++;
-        }
+function sortearBombos(sorteo, bombo) {
+    var grupoInicial = 0;
+    const equiposBombo = [...bombosGrupos[bombo]];
 
-        if(intentos > 100) {
-            location.reload();
-        }
-
-        asignarGrupo(equipo, $(`#sorteo-fase-grupos .sorteo .grupo${grupo}`));
+    //Si es el bombo 0, agregamos el campeón al grupo A
+    if(bombo == 0) {
+        grupoInicial = 1;
         
-        if(grupo == 7) {
-            $(`#sorteo-fase-grupos .bombo${bombo}`).remove();
-        }
-    }, 1000 * grupo);
+        const campeon = equiposBombo.filter(equipo => equipo.campeon)[0];
+        sorteo[`grupo0`].push(campeon);
+        equiposBombo.splice(equiposBombo.indexOf(campeon), 1);
+    }
+    
+    //Realizamos el sorteo de cada grupo
+    for(var i=grupoInicial; i<8;) {
+        i = sortearEquipoParaGrupo(i, sorteo, equiposBombo);
+    }
+
+    console.log("Bombo " + bombo + " sorteado!");
 }
 
-function puedeIngresarEnGrupo(bombo, grupo, equipo) {
-    const equiposGrupo = $(`#sorteo-fase-grupos .sorteo .grupo${grupo} .equipo`).length;
-    if(equiposGrupo >= bombo) return false;
+function acomodarEquipos(sorteo) {
+    $(`#sorteo-fase-grupos .sorteo .grupo .equipo`).remove();
+    for(var i=0; i<8; i++) {
+        asignarGrupo(sorteo[`grupo${i}`][0], i);
+    }
+    setTimeout(() => {
+        for(var i=0; i<8; i++) {
+            asignarGrupo(sorteo[`grupo${i}`][1], i);
+        }
+        setTimeout(() => {
+            for(var i=0; i<8; i++) {
+                asignarGrupo(sorteo[`grupo${i}`][2], i);
+            }
+            setTimeout(() => {
+                for(var i=0; i<8; i++) {
+                    asignarGrupo(sorteo[`grupo${i}`][3], i);
+                }
+            }, 1000);
+        }, 1000);
+    }, 1000);
+}
 
-    const entroPorFasePrevia = $(equipo).attr("data-faseprevia");
-    if(!entroPorFasePrevia) {
-        const equiposGrupoMismoPais = $(`#sorteo-fase-grupos .sorteo .grupo${grupo} .equipo[data-pais='${$(equipo).attr("data-pais")}']`).length;
-        if(equiposGrupoMismoPais >= 1) return false;
+function sortearEquipoParaGrupo(grupo, equiposSorteados, equiposBombo) {
+    var intentos = 0;
+    
+    var equipoSorteado = equiposBombo[generateRandom(equiposBombo.length)];
+    while(!equipoPuedeEntrarEnGrupo(equiposSorteados[`grupo${grupo}`], equipoSorteado) || !sorteoNoArriesgaOtroGrupo(grupo, equiposSorteados, equiposBombo, equipoSorteado)) {
+        if(intentos > 20) {
+            resetearSorteoBombo(equiposSorteados, equiposBombo);
+            return 0;
+        }
+        
+        equipoSorteado = equiposBombo[generateRandom(equiposBombo.length)];
+        intentos++;
+    }
+
+    equiposSorteados[`grupo${grupo}`].push(equipoSorteado);
+    equiposBombo.splice(equiposBombo.indexOf(equipoSorteado), 1);
+
+    return grupo+1;
+}
+
+function equipoPuedeEntrarEnGrupo(equiposGrupo, equipoSorteado) {
+    if(!equipoSorteado.fasePrevia) {
+        const paisesEquiposGrupo = $.map(equiposGrupo, function(equipo, i) {
+            return equipo.pais;
+        });
+        return !paisesEquiposGrupo.includes(equipoSorteado.pais);
     }
 
     return true;
 }
 
+function sorteoNoArriesgaOtroGrupo(grupo, equiposSorteados, equiposBombo, equipoSorteado) {
+    if(grupo == 7) {
+        return true;
+    }
+    
+    equiposSorteados[`grupo${grupo}`].push(grupo);
+    equiposBombo.splice(equiposBombo.indexOf(equipoSorteado), 1);
+
+    var minimoOtrosGrupos = 8;
+    const listaEquiposPosiblesPorGrupo = {
+        grupo0: new Array(),
+        grupo1: new Array(),
+        grupo2: new Array(),
+        grupo3: new Array(),
+        grupo4: new Array(),
+        grupo5: new Array(),
+        grupo6: new Array(),
+        grupo7: new Array()
+    }
+    for(var i=grupo+1; i<8; i++) {
+        const equiposPorGrupo = equiposBombo.filter(equipo => equipoPuedeEntrarEnGrupo(equiposSorteados[`grupo${i}`], equipo));
+        listaEquiposPosiblesPorGrupo[`grupo${i}`] = equiposPorGrupo;
+
+        const equiposPosibles = equiposBombo.filter(equipo => equipoPuedeEntrarEnGrupo(equiposSorteados[`grupo${i}`], equipo)).length;
+        if(equiposPosibles < minimoOtrosGrupos) {
+            minimoOtrosGrupos = equiposPosibles;
+        }
+    }
+    
+    equiposSorteados[`grupo${grupo}`].pop();
+    equiposBombo.push(equipoSorteado);
+
+    if(grupo < 6 && minimoOtrosGrupos == 1) {
+        const listasEquiposPosibles = new Array();
+        $.each(listaEquiposPosiblesPorGrupo, function(i, equiposPosiblesGrupo) {
+            if(equiposPosiblesGrupo.length) {
+                listasEquiposPosibles.push($.map(equiposPosiblesGrupo, function(equipo, i) {
+                    return equipo.nombre;
+                }));
+            } else {
+                delete listaEquiposPosiblesPorGrupo[`${i}`];
+            }
+        });
+
+        return !allEqual(listasEquiposPosibles); 
+    }
+
+    return minimoOtrosGrupos>0 && minimoOtrosGrupos<8;
+}
+
+function resetearSorteoBombo(equiposSorteados, equiposBombo) {
+    const bomboActual = equiposSorteados["grupo0"].length;
+    
+    var contadorGrupo = 0;
+    while(equiposSorteados[`grupo${contadorGrupo}`].length == bomboActual) {
+        equiposBombo.push(equiposSorteados[`grupo${contadorGrupo}`].pop());
+        contadorGrupo++;
+    }
+}
+
 function asignarGrupo(equipo, grupo) {
-    $(equipo).slideUp("slow", function(){
-        $(equipo).appendTo(grupo).hide(); 		
-        $(equipo).slideDown(); 	
+    //Creación del equipo
+    const imagen = $("<img>");
+    $(imagen).attr("src", "img/equipos/" + equipo.abreviacion + ".PNG");
+
+    const titulo = $("<h6>");
+    $(titulo).text(equipo.nombre);
+
+    const divEquipo = $("<div>");
+    $(divEquipo).addClass("equipo");
+    $(divEquipo).append(imagen);
+    $(divEquipo).append(titulo);
+
+    //Acomodo al equipo en el grupo correspondiente
+    const grupoHtml = $(`#sorteo-fase-grupos .sorteo .grupo${grupo}`);
+    $(divEquipo).slideUp("slow", function(){
+        $(divEquipo).appendTo(grupoHtml).hide(); 		
+        $(divEquipo).slideDown(); 	
+    });
+}
+
+//Simulaciones
+function obtenerPuntosGrupos(grupo, equipo) {
+    const abreviacionEquipo = $(equipo).attr("data-equipo");
+    
+    var puntosObtenidos = 0;
+    var diferenciaGol = 0;
+
+    const partidosEquipo = $(`#fase-grupos .fixture .grupo${grupo} .equipo[data-equipo='${abreviacionEquipo}']`);
+    $.each(partidosEquipo, function(index, partido) {
+        if($(partido).attr("data-resultado") != undefined) {
+            puntosObtenidos += mapearPuntosResultado($(partido).attr("data-resultado"));
+            diferenciaGol += parseInt($(partido).attr("data-difGol"));
+        }
     });
 
-    $(equipo).attr("data-sorteado", true);
+    $(equipo).find(".estadisticas .pts span").text(puntosObtenidos);
+    $(equipo).find(".estadisticas .difGol span").text(diferenciaGol);
+}
+
+function mapearPuntosResultado(resultado) {
+    switch(resultado) {
+        case "G":
+            return 3;
+        case "E":
+            return 1;
+        case "P":
+            return 0;
+    }
+}
+            
+function ordenarGrupo(grupo) {
+    var equipos = $(`#fase-grupos .grupos .grupo${grupo} .equipo`);
+    equipos = $(equipos).toArray().sort(ordenGrupos);
+
+    $(`#fase-grupos .grupos .grupo${grupo} .equipos`).html(equipos);
+}
+
+function ordenGrupos(a, b) {
+    //Ordeno por puntos
+    if(parseInt($(a).find(".estadisticas p.pts span").text()) > parseInt($(b).find(".estadisticas p.pts span").text())) {
+        return -1;
+    }
+    
+    if(parseInt($(a).find(".estadisticas p.pts span").text()) < parseInt($(b).find(".estadisticas p.pts span").text())) {
+        return 1;
+    }
+
+    //Si los puntos son iguales, comparo por diferencia de gol
+    if(parseInt($(a).find(".estadisticas p.difGol span").text()) > parseInt($(b).find(".estadisticas p.difGol span").text())) {
+        return -1;
+    }
+
+    if(parseInt($(a).find(".estadisticas p.difGol span").text()) < parseInt($(b).find(".estadisticas p.difGol span").text())) {
+        return 1;
+    }
+
+    //Si empatan en diferencia de gol, son iguales
+    return 0;
 }
 
 //Adicional

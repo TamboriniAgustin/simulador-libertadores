@@ -8,6 +8,7 @@
         <title>Simulación Libertadores</title>
         <!-- Css -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        
         <link rel="stylesheet" href="css/main.css">
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
@@ -25,43 +26,8 @@
             </div>
 
             <div class="equipos">
-                <div class="fila">
-                    <div class="equipo" data-equipo="BOC"></div>
-                    <div class="equipo" data-equipo="RIV"></div>
-                    <div class="equipo" data-equipo="OLI"></div>
-                    <div class="equipo" data-equipo="PAL"></div>
-                    <div class="equipo" data-equipo="NAC"></div>
-                    <div class="equipo" data-equipo="FLA"></div>
-                    <div class="equipo" data-equipo="INT"></div>
-                    <div class="equipo" data-equipo="ATN"></div>
-                    <div class="equipo" data-equipo="COL"></div>
-                    <div class="equipo" data-equipo="ARG"></div>
-                    <div class="equipo" data-equipo="RAC"></div>
-                    <div class="equipo" data-equipo="CAM"></div>
-                    <div class="equipo" data-equipo="COR"></div>
-                    <div class="equipo" data-equipo="CAP"></div>
-                    <div class="equipo" data-equipo="BSC"></div>
-                    <div class="equipo" data-equipo="FLU"></div>
-                </div>
-
-                <div class="fila">
-                    <div class="equipo" data-equipo="IDV"></div>
-                    <div class="equipo" data-equipo="SCL"></div>
-                    <div class="equipo" data-equipo="LIB"></div>
-                    <div class="equipo" data-equipo="ALI"></div>
-                    <div class="equipo" data-equipo="AUC"></div>
-                    <div class="equipo" data-equipo="BOL"></div>
-                    <div class="equipo" data-equipo="MEL"></div>
-                    <div class="equipo" data-equipo="MET"></div>
-                    <div class="equipo" data-equipo="MON"></div>
-                    <div class="equipo" data-equipo="STR"></div>
-                    <div class="equipo" data-equipo="CCP"></div>
-                    <div class="equipo" data-equipo="DIM"></div>
-                    <div class="equipo" data-equipo="DPP"></div>
-                    <div class="equipo" data-equipo="LIV"></div>
-                    <div class="equipo" data-equipo="NUB"></div>
-                    <div class="equipo" data-equipo="PAT"></div>
-                </div>
+                <div class="fila fila0"></div>
+                <div class="fila fila1"></div>
             </div>
         </header>
 
@@ -116,25 +82,25 @@
                             <div class="grupo grupo0">
                                 <h1>Grupo A</h1>
                             </div>
-                            <div class="grupo grupo1">
-                                <h1>Grupo B</h1>
-                            </div>
                             <div class="grupo grupo2">
                                 <h1>Grupo C</h1>
+                            </div>
+                            <div class="grupo grupo4">
+                                <h1>Grupo E</h1>
+                            </div>
+                            <div class="grupo grupo6">
+                                <h1>Grupo G</h1>
+                            </div>
+                        </div>
+                        <div class="fila">
+                            <div class="grupo grupo1">
+                                <h1>Grupo B</h1>
                             </div>
                             <div class="grupo grupo3">
                                 <h1>Grupo D</h1>
                             </div>
-                        </div>
-                        <div class="fila">
-                            <div class="grupo grupo4">
-                                <h1>Grupo E</h1>
-                            </div>
                             <div class="grupo grupo5">
                                 <h1>Grupo F</h1>
-                            </div>
-                            <div class="grupo grupo6">
-                                <h1>Grupo G</h1>
                             </div>
                             <div class="grupo grupo7">
                                 <h1>Grupo H</h1>
@@ -145,14 +111,14 @@
 
                 <div id="fase-grupos">
                     <div class="filtro-grupos">
-                        <button id="grupoA" class="active">Grupo A</button>
-                        <button id="grupoB">Grupo B</button>
-                        <button id="grupoC">Grupo C</button>
-                        <button id="grupoD">Grupo D</button>
-                        <button id="grupoE">Grupo E</button>
-                        <button id="grupoF">Grupo F</button>
-                        <button id="grupoG">Grupo G</button>
-                        <button id="grupoH">Grupo H</button>
+                        <button id="grupo1" class="active">Grupo A</button>
+                        <button id="grupo2">Grupo B</button>
+                        <button id="grupo3">Grupo C</button>
+                        <button id="grupo4">Grupo D</button>
+                        <button id="grupo5">Grupo E</button>
+                        <button id="grupo6">Grupo F</button>
+                        <button id="grupo7">Grupo G</button>
+                        <button id="grupo8">Grupo H</button>
                     </div>
                     
                     <div class="grupos">
@@ -230,6 +196,10 @@
                         <div class="grupo grupo6"></div>
                         <div class="grupo grupo7"></div>
                         <div class="grupo grupo8"></div>
+                    </div>
+
+                    <div class="contenedor-btn-simular">
+                        <button id="simularGrupos" data-grupo="1">Simular</button>
                     </div>
                 </div>
             </div>

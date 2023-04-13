@@ -1,6 +1,6 @@
 body {
     background-image: url("../img/background.jpg");
-    width: 100vw;
+    max-width: 100vw;
     min-height: 100vh;
     height: auto;
 }
@@ -59,7 +59,7 @@ header .equipos .equipo {
 }
 
 section {
-    padding: 100px 0;
+    margin: 30px auto;
 }
 section h1 {
     color: white;
@@ -129,6 +129,9 @@ section#selector-funcionalidades .cards .card:hover button {
 
 section#funcionalidades {
     display: none;
+    max-width: 1080px;
+    max-height: 1920px;
+    overflow: hidden;
 }
 
 section#funcionalidades #sorteo-fase-grupos {
@@ -182,7 +185,6 @@ section#funcionalidades #sorteo-fase-grupos .sorteo {
     display: flex;
     flex-direction: column;
     margin-top: 25px;
-    gap: 20px;
 }
 section#funcionalidades #sorteo-fase-grupos .sorteo .fila {
     display: flex;
@@ -217,12 +219,6 @@ section#funcionalidades #sorteo-fase-grupos .sorteo .fila .grupo .equipo h6 {
 section#funcionalidades #fase-grupos {
     display: none;
 }
-section#funcionalidades #fase-grupos {
-    width: 1080px;
-    margin: 0 auto;
-    max-height: 1920px;
-    overflow: hidden;
-}
 section#funcionalidades #fase-grupos .filtro-grupos {
     text-align: center;
 }
@@ -241,6 +237,13 @@ section#funcionalidades #fase-grupos .filtro-grupos button.active {
 section#funcionalidades #fase-grupos .grupos {
     margin-top: 20px;
     text-align: center;
+}
+section#funcionalidades #fase-grupos .grupos.vista-final {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
 }
 section#funcionalidades #fase-grupos .grupos .grupo:not(.grupo1) {
     display: none;
@@ -304,13 +307,16 @@ section#funcionalidades #fase-grupos .grupos .grupo .equipos .equipo .estadistic
     margin: 0;
     font-weight: bold;
 }
+section#funcionalidades #fase-grupos .grupos .grupo .equipos .equipo .estadisticas p span {
+    color: rgb(216, 157, 84);
+}
 section#funcionalidades #fase-grupos .fixture .grupo {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     margin-top: 15px;
-    gap: 15px;
+    gap: 35px;
 }
 section#funcionalidades #fase-grupos .fixture .grupo:not(.grupo1) {
     display: none;
@@ -357,8 +363,29 @@ section#funcionalidades #fase-grupos .fixture .grupo .partido .resultado input {
     background-color: transparent;
     border: none;
     color: rgb(216, 157, 84);
+    -moz-appearance: textfield;
 }
+section#funcionalidades #fase-grupos .fixture .grupo .partido .resultado input::-webkit-outer-spin-button,
+section#funcionalidades #fase-grupos .fixture .grupo .partido .resultado input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 section#funcionalidades #fase-grupos .fixture .grupo .partido .resultado span {
     color: rgb(216, 157, 84);
     font-size: 30px;
+}
+section#funcionalidades #fase-grupos .contenedor-btn-simular {
+    margin-top: 5px;
+    text-align: center;
+}
+section#funcionalidades #fase-grupos .contenedor-btn-simular button#simularGrupos {
+    padding: 5px 50px;
+    border: none;
+    background-color: rgb(223 191 152);
+    font-weight: bold;
+    transition: all .5s;
+}
+section#funcionalidades #fase-grupos .contenedor-btn-simular button#simularGrupos:hover {
+    background-color: rgb(131, 113, 91);
 }
