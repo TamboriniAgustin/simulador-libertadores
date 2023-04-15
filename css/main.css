@@ -389,3 +389,83 @@ section#funcionalidades #fase-grupos .contenedor-btn-simular button#simularGrupo
 section#funcionalidades #fase-grupos .contenedor-btn-simular button#simularGrupos:hover {
     background-color: rgb(131, 113, 91);
 }
+
+section#funcionalidades #sorteo-fase-eliminatoria {
+    display: none;
+}
+section#funcionalidades #sorteo-fase-eliminatoria .contenedor-sorteo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+section#funcionalidades #sorteo-fase-eliminatoria .bombos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+}
+section#funcionalidades #sorteo-fase-eliminatoria .bombos .bombo {
+    color: white;
+    padding: 20px;
+    border: outset rgb(223 191 152);
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 50px 50px 50px 50px;
+}
+section#funcionalidades #sorteo-fase-eliminatoria .bombos .bombo h1 {
+    grid-column: 1/5;
+    grid-row: 1;
+}
+section#funcionalidades #sorteo-fase-eliminatoria .bombos .bombo .equipo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section#funcionalidades #sorteo-fase-eliminatoria .bombos .bombo .equipo img {
+    max-width: 100%;
+}
+section#funcionalidades #sorteo-fase-eliminatoria .llaves {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 2;
+}
+section#funcionalidades #sorteo-fase-eliminatoria .llaves .partido {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 25px;
+}
+section#funcionalidades #sorteo-fase-eliminatoria .llaves .partido:not(:last-of-type) {
+    margin-bottom: 50px;
+}
+section#funcionalidades #sorteo-fase-eliminatoria .llaves .partido .equipo {
+    background: #302B32;
+    min-width: 200px;
+    min-height: 30px;
+    border: 1px solid #D7C27F;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    transition: all .5s;
+}
+section#funcionalidades #sorteo-fase-eliminatoria .llaves .partido .equipo p {
+    margin: 0;
+}
+section#funcionalidades #sorteo-fase-eliminatoria .contenedor-btn-sortear {
+    margin-top: 25px;
+    text-align: center;
+}
+section#funcionalidades #sorteo-fase-eliminatoria .contenedor-btn-sortear button#sortear {
+    padding: 5px 50px;
+    border: none;
+    background-color: rgb(223 191 152);
+    font-weight: bold;
+    transition: all .5s;
+}
+section#funcionalidades #sorteo-fase-eliminatoria .contenedor-btn-sortear button#sortear:hover {
+    background-color: rgb(131, 113, 91);
+}

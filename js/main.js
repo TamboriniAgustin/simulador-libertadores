@@ -258,6 +258,16 @@ const fixtureGrupos = [
         // { local: equipos["Olimpia"], visitante: equipos["Melgar"] }
     ]
 ]
+const bombosEliminatorias = [
+    bombo1 = [
+        equipos["Palmeiras"], equipos["Boca"], equipos["Olimpia"], equipos["Corinthians"], 
+        equipos["Fluminense"], equipos["Internacional"], equipos["Libertad"], equipos["Racing"]
+    ],
+    bombo2 = [
+        equipos["Flamengo"], equipos["River"], equipos["IDV"], equipos["Nacional"], 
+        equipos["ATN"], equipos["Barcelona"], equipos["ColoColo"], equipos["Mineiro"]
+    ]
+]
 
 $(document).ready(function () {
     //Carga header
@@ -265,7 +275,7 @@ $(document).ready(function () {
     $.each(bombosGrupos, function(bombo, equipos) {
         $.each(equipos, function(index, equipo) {
             agregarEquipoHeader(+(bombo > 1), equipo.abreviacion);
-            agregarEquipoBombo(bombo+1, equipo.nombre, equipo.abreviacion, equipo.campeon, equipo.fasePrevia, equipo.pais);
+            agregarEquipoBombo("#sorteo-fase-grupos", bombo+1, equipo);
         });
     });
 
@@ -278,6 +288,13 @@ $(document).ready(function () {
     $.each(fixtureGrupos, function(grupo, partidos) {
         $.each(partidos, function(index, partido) {
             agregarPartidoGrupo(grupo+1, partido.local, partido.visitante);
+        });
+    });
+
+    //Carga funcionalidad: sorteo fase eliminatoria
+    $.each(bombosEliminatorias, function(bombo, equipos) {
+        $.each(equipos, function(index, equipo) {
+            agregarEquipoBomboEliminatorias("#sorteo-fase-eliminatoria", bombo+1, equipo);
         });
     });
 
@@ -368,6 +385,18 @@ $(document).ready(function () {
             }
         }, 2000);
     });
+    
+    //Sorteo fase eliminatoria
+    $("#selector-funcionalidades .cards .sorteo-eliminatorias button").on("click", function () {
+        $("#selector-funcionalidades").hide();
+        $("section#funcionalidades h1.titulo").text("Simular sorteo Eliminatorias");
+        $("section#funcionalidades").show();
+        $("section#funcionalidades #sorteo-fase-eliminatoria").show();
+    });
+
+    $("#sorteo-fase-eliminatoria #sortear").on("click", function () {
+        sortearFaseEliminatoria();
+    });
 });
 
 //Creación de header
@@ -380,22 +409,33 @@ function agregarEquipoHeader(fila, abreviacionEquipo) {
 }
 
 //Creación de bombos
-function agregarEquipoBombo(bombo, equipo, abreviacion, esCampeon, vieneDeFasePrevia, pais) {
+function agregarEquipoBombo(parent, bombo, equipo) {
     const imagen = $("<img>");
-    $(imagen).attr("src", "img/equipos/" + abreviacion + ".PNG");
+    $(imagen).attr("src", "img/equipos/" + equipo.abreviacion + ".PNG");
 
     const titulo = $("<h6>");
-    $(titulo).text(equipo);
+    $(titulo).text(equipo.nombre);
 
     const divEquipo = $("<div>");
     $(divEquipo).addClass("equipo");
     $(divEquipo).append(imagen);
     $(divEquipo).append(titulo);
-    $(divEquipo).attr("data-campeon", esCampeon);
-    $(divEquipo).attr("data-fasePrevia", vieneDeFasePrevia);
-    $(divEquipo).attr("data-pais", pais);
+    $(divEquipo).attr("data-campeon", equipo.campeon);
+    $(divEquipo).attr("data-fasePrevia", equipo.fasePrevia);
+    $(divEquipo).attr("data-pais", equipo.pais);
 
-    $("#sorteo-fase-grupos .bombo" + bombo).append(divEquipo);
+    $(`${parent} .bombo${bombo}`).append(divEquipo);
+}
+
+function agregarEquipoBomboEliminatorias(parent, bombo, equipo) {
+    const imagen = $("<img>");
+    $(imagen).attr("src", "img/equipos/" + equipo.abreviacion + ".PNG");
+
+    const divEquipo = $("<div>");
+    $(divEquipo).addClass("equipo");
+    $(divEquipo).append(imagen);
+    
+    $(`${parent} .bombo${bombo}`).append(divEquipo);
 }
 
 //Creación de grupos
@@ -477,6 +517,7 @@ function agregarPartidoGrupo(grupo, local, visitante) {
 }
 
 //Sorteos
+/** Fase de grupos **/
 function sortearFaseDeGrupos() {    
     const sorteo = {
         grupo0: new Array(),
@@ -520,24 +561,22 @@ function sortearBombos(sorteo, bombo) {
 
 function acomodarEquipos(sorteo) {
     $(`#sorteo-fase-grupos .sorteo .grupo .equipo`).remove();
-    for(var i=0; i<8; i++) {
-        asignarGrupo(sorteo[`grupo${i}`][0], i);
+    
+    const sorteoOrdenado = new Array();
+    for(var i=0; i<4; i++) {
+        sorteoOrdenado.push({grupo: 0, datos: sorteo[`grupo0`][i]});
+        sorteoOrdenado.push({grupo: 1, datos: sorteo[`grupo1`][i]});
+        sorteoOrdenado.push({grupo: 2, datos: sorteo[`grupo2`][i]});
+        sorteoOrdenado.push({grupo: 3, datos: sorteo[`grupo3`][i]});
+        sorteoOrdenado.push({grupo: 4, datos: sorteo[`grupo4`][i]});
+        sorteoOrdenado.push({grupo: 5, datos: sorteo[`grupo5`][i]});
+        sorteoOrdenado.push({grupo: 6, datos: sorteo[`grupo6`][i]});
+        sorteoOrdenado.push({grupo: 7, datos: sorteo[`grupo7`][i]});
     }
-    setTimeout(() => {
-        for(var i=0; i<8; i++) {
-            asignarGrupo(sorteo[`grupo${i}`][1], i);
-        }
-        setTimeout(() => {
-            for(var i=0; i<8; i++) {
-                asignarGrupo(sorteo[`grupo${i}`][2], i);
-            }
-            setTimeout(() => {
-                for(var i=0; i<8; i++) {
-                    asignarGrupo(sorteo[`grupo${i}`][3], i);
-                }
-            }, 1000);
-        }, 1000);
-    }, 1000);
+
+    for(var i=0; i<sorteoOrdenado.length; i++) {
+        asignarGrupo(sorteoOrdenado[i], i);
+    }
 }
 
 function sortearEquipoParaGrupo(grupo, equiposSorteados, equiposBombo) {
@@ -631,25 +670,71 @@ function resetearSorteoBombo(equiposSorteados, equiposBombo) {
     }
 }
 
-function asignarGrupo(equipo, grupo) {
-    //Creación del equipo
-    const imagen = $("<img>");
-    $(imagen).attr("src", "img/equipos/" + equipo.abreviacion + ".PNG");
+function asignarGrupo(equipo, nroEquipo) {
+    setTimeout(() => {
+        //Creación del equipo
+        const imagen = $("<img>");
+        $(imagen).attr("src", "img/equipos/" + equipo.datos.abreviacion + ".PNG");
+    
+        const titulo = $("<h6>");
+        $(titulo).text(equipo.datos.nombre);
+    
+        const divEquipo = $("<div>");
+        $(divEquipo).addClass("equipo");
+        $(divEquipo).append(imagen);
+        $(divEquipo).append(titulo);
+    
+        //Acomodo al equipo en el grupo correspondiente
+        const grupoHtml = $(`#sorteo-fase-grupos .sorteo .grupo${equipo.grupo}`);
+        $(divEquipo).slideUp("slow", function(){
+            $(divEquipo).appendTo(grupoHtml).hide(); 		
+            $(divEquipo).slideDown(); 	
+        });
+    }, 1000 * nroEquipo);
+}
 
-    const titulo = $("<h6>");
-    $(titulo).text(equipo.nombre);
+/** Eliminatorias **/
+function sortearFaseEliminatoria() {
+    const sorteo = {
+        bombo1: new Array(),
+        bombo2: new Array()
+    };   
 
-    const divEquipo = $("<div>");
-    $(divEquipo).addClass("equipo");
-    $(divEquipo).append(imagen);
-    $(divEquipo).append(titulo);
+    for(var bombo=1; bombo>=0; bombo--) {
+        const equiposBombo = [...bombosEliminatorias[bombo]];
 
-    //Acomodo al equipo en el grupo correspondiente
-    const grupoHtml = $(`#sorteo-fase-grupos .sorteo .grupo${grupo}`);
-    $(divEquipo).slideUp("slow", function(){
-        $(divEquipo).appendTo(grupoHtml).hide(); 		
-        $(divEquipo).slideDown(); 	
-    });
+        //Realizamos el sorteo de cada bombo
+        for(var i=1; i<=8; i++) {
+            sortearEquipoParaEliminatorias(bombo, i, sorteo, equiposBombo);
+        }
+
+        console.log("Bombo " + bombo + " sorteado!");
+    }
+    
+    $(`#sorteo-fase-eliminatoria .equipo p`).remove();
+    
+    const sorteoOrdenado = sorteo["bombo2"].concat(sorteo["bombo1"]);
+    for(var i=0; i<sorteoOrdenado.length; i++) {
+        acomodarEquipoEliminatorias(sorteoOrdenado[i], i)
+    }
+}
+
+function sortearEquipoParaEliminatorias(bombo, partido, equiposSorteados, equiposBombo) {    
+    var equipoSorteado = equiposBombo[generateRandom(equiposBombo.length)];
+    equiposSorteados[`bombo${bombo+1}`].push(equipoSorteado);
+    equiposBombo.splice(equiposBombo.indexOf(equipoSorteado), 1);
+}
+
+function acomodarEquipoEliminatorias(equipo, nroEquipo) {
+    setTimeout(() => {
+        const nombre = $("<p>");
+        $(nombre).text(equipo.nombre);
+        
+        $(nombre).slideUp("slow", function(){
+            $(nombre).appendTo(`#sorteo-fase-eliminatoria .equipo${nroEquipo}`).hide(); 		
+            $(nombre).slideDown(); 	
+        });
+    }, 1000 * nroEquipo);
 }
 
 //Simulaciones
